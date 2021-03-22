@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Access Token</title>
+        <style>
+            .highlight{
+                font-size: 25px;
+                color: red;
+            }
+            .span{
+                font-family: "Roboto", "sans-serif";
+                position: absolute;
+                size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <p id="content"></p>
+        </div>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            axios.get('https://graph.facebook.com/utc2hcmc/posts?access_token=EAAAAZAw4FxQIBAKET2HOFtKqxgkuqBnN8bCFvUDuckrrvOg8aN86AQJAIHMzkJxjbPaYt4grQJFgi8ygEqJeNbnEOfQnA5wPDyvOoHiiewmX5vSiuzyWN7rUb9ZAfj9r3YnHLHQpIHkkzfZAbwNX3aFTZBrsikxTjHfCfehF7gZDZD')
+                .then(response => {
+                    var content = "";
+                    content += " <span class='highlight'>Bài viết gần nhất</span> </br> Content: " +
+                    response.data.data[0].message + "<br></br></br>" +
+                    "<span class='highlight'>Bài viết thứ 2</span> </br>< Content: " +
+                    response.data.data[1].message + "<br></br></br>" +
+                    "<span class='highlight'>Bài viết thứ 3</span> </br> Content: " +
+                    response.data.data[2].message;
+
+                    document.getElementById('content').innerHTML = content;
+            })
+            .catch(error => console.error(error));
+        </script>
+    </body>
+</html>
